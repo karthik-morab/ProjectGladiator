@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite guice-stage="DEVELOPMENT" name="Failed suite [hotelBooking]">
+  <test thread-count="5" name="Test(failed)">
+    <classes>
+      <class name="hotelTS.hotelTC">
+        <methods>
+          <include name="bookHotelWithInvalidEmail"/>
+          <include name="Url1"/>
+          <include name="bookHotelWithValidDetails"/>
+          <include name="testingSearchPageWithNoRooms"/>
+          <include name="testingSearchPageWithMaxRooms"/>
+          <include name="bookHotelWithNoName"/>
+          <include name="childLimit"/>
+          <include name="testingSearchPageWithMoreThan16Adults"/>
+          <include name="afterTest"/>
+          <include name="bookHotelWithValidEmail"/>
+          <include name="testingSearchPageWithNoAdults"/>
+          <include name="testingSearchPageWithValidDetails"/>
+          <include name="beforeTest"/>
+          <include name="withoutEnteringLocation"/>
+        </methods>
+      </class> <!-- hotelTS.hotelTC -->
+    </classes>
+  </test> <!-- Test(failed) -->
+</suite> <!-- Failed suite [hotelBooking] -->
