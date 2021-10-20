@@ -13,14 +13,19 @@ public class MulticityFlightTC extends Base {
 
 	@Test(priority = 1)
 	public void testUrl() {
+		logger=report.createTest("URL test");
+    	logger.info("Starting the web application");
 		Url u = new Url();
 		String site = u.getUrl();//get url
 		driver.get(site);//visit url
+		   logger.pass("success");
 	}
 
 	@Test(priority = 3, dependsOnMethods = "testUrl", description = "Testing by giving only from city without destination")
 	public void NoDestination() throws Exception {
 		driver.manage().window().maximize();
+		logger=report.createTest("Testing by giving only from city without destination");
+    	logger.info("Starting the web application");
 
 		FlightElements e = new FlightElements(driver);
 		FlightCredentials cred = new FlightCredentials();
@@ -31,10 +36,13 @@ public class MulticityFlightTC extends Base {
 		String actual = e.errStatus();//check error status
 
 		Assert.assertEquals(actual, "Please add at least one more sector/city to continue");//compare errors
+		   logger.pass("success");
 	}
 
 	@Test(priority = 4, dependsOnMethods = "NoDestination", description = "Testing multicity trip Flight with Valid From and Destination with no valid Date for Travel 1")
 	public void NoValidDateForTravel1() throws Exception {
+		logger=report.createTest("Testing multicity trip Flight with Valid From and Destination with no valid Date for Travel 1");
+    	logger.info("Starting the web application");
 		driver.manage().window().maximize();//maximize window
 		FlightElements e = new FlightElements(driver);
 		FlightCredentials cred = new FlightCredentials();
@@ -43,10 +51,13 @@ public class MulticityFlightTC extends Base {
 		String actual = e.errStatus();//check error status
 
 		Assert.assertEquals(actual, "Please provide a valid Date for Travel 1");//compare error statements
+		   logger.pass("success");
 	}
 
 	@Test(priority = 5, dependsOnMethods = "NoValidDateForTravel1", description = "Testing the multicity trip without giving the destination city")
 	public void NoDestinationCity2() throws Exception {
+		logger=report.createTest("Testing the multicity trip without giving the destination city");
+    	logger.info("Starting the web application");
 		driver.manage().window().maximize();
 		FlightElements e = new FlightElements(driver);
 		e.setDep();//set departure date
@@ -54,10 +65,13 @@ public class MulticityFlightTC extends Base {
 		String actual = e.errStatus();
 
 		Assert.assertEquals(actual, "Please provide a valid Destination city for Travel 2");
+		   logger.pass("success");
 	}
 
 	@Test(priority = 6, dependsOnMethods = "NoDestinationCity2", description = "Testing multicity trip Flight with Valid From and Destination with no valid Date for Travel 2")
 	public void NoValidDateForTravel2() throws Exception {
+		logger=report.createTest("Testing multicity trip Flight with Valid From and Destination with no valid Date for Travel 2");
+    	logger.info("Starting the web application");
 		driver.manage().window().maximize();
 		FlightElements e = new FlightElements(driver);
 		FlightCredentials cred = new FlightCredentials();
@@ -66,10 +80,13 @@ public class MulticityFlightTC extends Base {
 		String actual = e.errStatus();
 
 		Assert.assertEquals(actual, "Please provide a valid Date for Travel 2");
+		   logger.pass("success");
 	}
 
 	@Test(priority = 7, dependsOnMethods = "NoValidDateForTravel2", description = "Booking Multicity Flight without Title")
 	public void NoTitle() throws Exception {
+		logger=report.createTest("Booking Multicity Flight without Title");
+    	logger.info("Starting the web application");
 		driver.manage().window().maximize();
 		FlightElements e = new FlightElements(driver);
 		e.setDep2();//set departure 2 date
@@ -80,10 +97,13 @@ public class MulticityFlightTC extends Base {
 		boolean x = e.checkErr1();
 
 		Assert.assertTrue(x);
+		   logger.pass("success");
 	}
 
 	@Test(priority = 8, dependsOnMethods = "NoTitle", description = "Booking Multicity Flight without First Name")
 	public void NoFirstName() throws Exception {
+		logger=report.createTest("Booking Multicity Flight without First Name");
+    	logger.info("Starting the web application");
 		driver.manage().window().maximize();
 		FlightElements e = new FlightElements(driver);
 		FlightCredentials cred = new FlightCredentials();
@@ -93,10 +113,13 @@ public class MulticityFlightTC extends Base {
 		String x = e.checkErr2();
 
 		Assert.assertEquals(x, "First Name is required");
+		   logger.pass("success");
 	}
 
 	@Test(priority = 9, dependsOnMethods = "NoFirstName", description = "Booking Multicity Flight without Last Name")
 	public void NoLastName() throws Exception {
+		logger=report.createTest("Booking Multicity Flight without Last Name");
+    	logger.info("Starting the web application");
 		driver.manage().window().maximize();
 		FlightElements e = new FlightElements(driver);
 		FlightCredentials cred = new FlightCredentials();
@@ -105,10 +128,13 @@ public class MulticityFlightTC extends Base {
 		
 		String actual = e.checkErr2();
 		Assert.assertEquals(actual, "Last Name is required");
+		   logger.pass("success");
 	}
 
 	@Test(priority = 10, dependsOnMethods = "NoLastName", description = "Booking Multicity Flight with same First Name and Last Name")
 	public void SameFirstAndLastName() throws Exception {
+		logger=report.createTest("Booking Multicity Flight with same First Name and Last Name");
+    	logger.info("Starting the web application");
 		driver.manage().window().maximize();
 		FlightElements e = new FlightElements(driver);
 		FlightCredentials cred = new FlightCredentials();
@@ -118,10 +144,13 @@ public class MulticityFlightTC extends Base {
 		String actual = e.checkErr2();
 
 		Assert.assertEquals(actual, "First Name and Last Name cannot be same");
+		   logger.pass("success");
 	}
 
 	@Test(priority = 11, dependsOnMethods = "SameFirstAndLastName", description = "Booking Multicity Flight without Email")
 	public void NoEmail() throws Exception {
+		logger=report.createTest("Booking Multicity Flight without Email");
+    	logger.info("Starting the web application");
 		driver.manage().window().maximize();
 		FlightElements e = new FlightElements(driver);
 		FlightCredentials cred = new FlightCredentials();
@@ -131,11 +160,14 @@ public class MulticityFlightTC extends Base {
 		String actual = e.checkErr2();
 
 		Assert.assertEquals(actual, "Email is required");
+		   logger.pass("success");
 	}
 
 	@Test(priority = 12, dependsOnMethods = "NoEmail", description = "Booking Multicity Flight with inValidEmail")
 	public void InvalidEmail() throws Exception {
 		driver.manage().window().maximize();
+		logger=report.createTest("Booking Multicity Flight with inValidEmail");
+    	logger.info("Starting the web application");
 		FlightElements e = new FlightElements(driver);
 		FlightCredentials cred = new FlightCredentials();
 
@@ -144,11 +176,14 @@ public class MulticityFlightTC extends Base {
 		String actual = e.checkErr2();
 
 		Assert.assertEquals(actual, "Please provide a valid e-mail id");
+		   logger.pass("success");
 	}
 
 	@Test(priority = 13, dependsOnMethods = "InvalidEmail", description = "Booking Multicity Flight without Mobile number")
 	public void NoNumber() throws Exception {
 		driver.manage().window().maximize();
+		logger=report.createTest("Booking Multicity Flight without Mobile number");
+    	logger.info("Starting the web application");
 		FlightElements e = new FlightElements(driver);
 		FlightCredentials cred = new FlightCredentials();
 
@@ -157,11 +192,14 @@ public class MulticityFlightTC extends Base {
 		String actual = e.checkErr2();
 
 		Assert.assertEquals(actual, "Mobile Number is required");
+		   logger.pass("success");
 	}
 
 	@Test(priority = 13, dependsOnMethods = "NoNumber", description = "Booking Multicity Flight valid credentials")
 	public void ValidCredentials() throws Exception {
 		driver.manage().window().maximize();
+		logger=report.createTest("Booking Multicity Flight valid credentials");
+    	logger.info("Starting the web application");
 		FlightElements e = new FlightElements(driver);
 		FlightCredentials cred = new FlightCredentials();
 		e.setNum(cred.getValidNo());
@@ -169,5 +207,6 @@ public class MulticityFlightTC extends Base {
 		e.clickProceed();
 		e.clickOk();//click on ok
 		e.clickPtopay();//click on proceed to pay
+		   logger.pass("success");
 	}
 }

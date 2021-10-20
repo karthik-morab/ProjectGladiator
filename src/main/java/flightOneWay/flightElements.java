@@ -25,10 +25,10 @@ public class flightElements {
 		this.driver = driver;
 	}
 
-	By e_from = By.xpath("//*[@id='gosuggest_inputSrc']");
+	By e_from = By.xpath("//input[@id='gosuggest_inputSrc']");
 	By e_to = By.xpath("//input[@id='gosuggest_inputDest']");
 	By e_search = By.xpath("//button[normalize-space()='SEARCH']");
-	By e_dep = By.xpath("//div[@aria-label='Tue Oct 19 2021']");
+	By e_dep = By.xpath("//div[@aria-label='Sun Oct 17 2021']");
 	By e_pax = By.xpath("//div[@id='pax_link_common']");
 	By e_adult = By.xpath("//button[@id='adultPaxPlus']");
 	By e_child = By.xpath("//button[@id='childPaxPlus']");
@@ -52,75 +52,32 @@ public class flightElements {
 	By e_visible = By.xpath("//span[@class='alertText padL5']//strong[contains(text(),'NOTE:')]");
 	By e_err8 = By.xpath("//span[@class='status_cont']");
 
-	public void setFrom() throws Exception {
-		 
-		FileInputStream fil=new FileInputStream(new File("src\\test\\resources\\Utilities\\Credentials_flights_hotels.xlsx"));
-		XSSFWorkbook workbook=new XSSFWorkbook(fil);
-		XSSFSheet sheet=workbook.getSheet("Sheet1");
-		int count=sheet.getLastRowNum();
-		System.out.println("count:"+count);
-		for (int i = 1; i<=count; i++) {
-		XSSFRow row = sheet.getRow(i);
-		XSSFCell cell1 = row.getCell(0);
-		XSSFCell cell2 = row.getCell(1);
-		driver.findElement(e_from).sendKeys(cell1.toString());
-		driver.findElement(e_to).sendKeys(cell2.toString());
+	public void setFrom(String from) {
+		driver.findElement(e_from).clear();
+		driver.findElement(e_from).sendKeys(from);
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		driver.findElement(e_from).click();
-		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		driver.findElement(e_from).sendKeys(Keys.ARROW_DOWN);
 		driver.findElement(e_from).sendKeys(Keys.ENTER);
-		Thread.sleep(2000);
-		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-		driver.findElement(e_from).click();
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-		driver.findElement(e_from).clear();
-		driver.findElement(e_from).click();
-		
+	}
+
+	public void setTo(String to) {
+		driver.findElement(e_to).clear();
+		driver.findElement(e_to).sendKeys(to);
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		driver.findElement(e_to).click();
-		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		driver.findElement(e_to).sendKeys(Keys.ARROW_DOWN);
 		driver.findElement(e_to).sendKeys(Keys.ENTER);
-		Thread.sleep(2000);
-		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-		driver.findElement(e_to).click();
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-		driver.findElement(e_to).clear();
-		driver.findElement(e_to).click();
-		}
-		
-	}
-	public void clear()
-	{
-		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-		driver.findElement(e_from).clear();
-		
-	}
-
-	public void setTo(List<String> to) throws InterruptedException {
-		for(int i=0;i<to.size();i++) {
-			
-			System.out.println(i+" "+to.get(i));
-			
-			driver.findElement(e_to).sendKeys(to.get(i));
-			driver.findElement(e_to).click();
-			driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-			driver.findElement(e_to).sendKeys(Keys.ARROW_DOWN);
-			driver.findElement(e_to).sendKeys(Keys.ENTER);
-			Thread.sleep(2000);
-			driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-			driver.findElement(e_to).click();
-			driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-			driver.findElement(e_to).clear();
-			driver.findElement(e_to).click();
-
-		  }
-		
 	}
 
 	public void clickSearch() throws Exception {
 		driver.findElement(e_search).click();
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-		// WebDriverWait wait=new WebDriverWait(driver, 1500);
+// WebDriverWait wait=new WebDriverWait(driver, 1500);
 	}
 
 	public String errStatus() {
@@ -159,7 +116,7 @@ public class flightElements {
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 	}
 
-	// span[normalize-space()='Base Fare']
+// span[normalize-space()='Base Fare']
 	public void clickBook() {
 		driver.findElement(e_book).click();
 	}
@@ -182,7 +139,7 @@ public class flightElements {
 	public void setMail(String mail) {
 		driver.findElement(e_mail).clear();
 		driver.findElement(e_mail).sendKeys(mail);
-		
+
 	}
 
 	public void setNum(String num) {
@@ -192,71 +149,61 @@ public class flightElements {
 
 	public void clickPtopay() {
 		driver.findElement(e_pay).click();
-		//driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+//driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 	}
-	
+
 	public boolean checkErr1() {
 		boolean x;
-		x = driver
-				.findElement(e_err1)
-				.isDisplayed();
-		
+		x = driver.findElement(e_err1).isDisplayed();
+
 		return x;
 	}
-	
+
 	public boolean checkErr2() {
 		boolean x;
-		x = driver.findElement(e_err2)
-		.isDisplayed();
+		x = driver.findElement(e_err2).isDisplayed();
 		return x;
 	}
-	
+
 	public boolean checkErr3() {
 		boolean x;
-		x = driver.findElement(e_err3)
-		.isDisplayed();
+		x = driver.findElement(e_err3).isDisplayed();
 		return x;
 	}
-	
+
 	public boolean checkErr4() {
 		boolean x;
-		x = driver.findElement(e_err4)
-		.isDisplayed();
+		x = driver.findElement(e_err4).isDisplayed();
 		return x;
 	}
-	
+
 	public boolean checkErr5() {
 		boolean x;
-		x = driver.findElement(e_err5)
-		.isDisplayed();
+		x = driver.findElement(e_err5).isDisplayed();
 		return x;
 	}
-	
+
 	public boolean checkErr6() {
 		boolean x;
-		x = driver.findElement(e_err6)
-		.isDisplayed();
+		x = driver.findElement(e_err6).isDisplayed();
 		return x;
 	}
-	
+
 	public String checkErr7() {
 		String x;
-		x = driver.findElement(e_err7)
-		.getText();
+		x = driver.findElement(e_err7).getText();
 		return x;
 	}
-	
+
 	public boolean checkVisible() {
 		boolean x;
-		x = driver.findElement(e_visible)
-		.isDisplayed();
+		x = driver.findElement(e_visible).isDisplayed();
 		return x;
 	}
-	
+
 	public String checkErr8() {
 		String x;
-		x = driver.findElement(e_err8)
-		.getText();
+		x = driver.findElement(e_err8).getText();
 		return x;
 	}
 }

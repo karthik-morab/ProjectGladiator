@@ -6,6 +6,11 @@
 	<artifactId>GladiatorGoibibo</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<dependencies>
+	<dependency>
+			<groupId>com.aventstack</groupId>
+			<artifactId>extentreports</artifactId>
+			<version>3.1.5</version>
+		</dependency>
 		<dependency>
 			<groupId>org.testng</groupId>
 			<artifactId>testng</artifactId>

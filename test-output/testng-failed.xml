@@ -3,16 +3,16 @@
 <suite guice-stage="DEVELOPMENT" name="Failed suite [Default suite]">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="tsOneWayFlight.oneWayFlightTC">
+      <class name="hotelTS.hotelTC">
         <methods>
           <include name="beforeTest"/>
-          <include name="NoFromAndNoTo"/>
-          <include name="testUrl"/>
+          <include name="Url1"/>
+          <include name="beforeSuite"/>
           <include name="afterTest"/>
-          <include name="NoDestination"/>
-          <include name="validSourceDestDate"/>
+          <include name="withoutEnteringLocation"/>
+          <include name="flush"/>
         </methods>
-      </class> <!-- tsOneWayFlight.oneWayFlightTC -->
+      </class> <!-- hotelTS.hotelTC -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->
